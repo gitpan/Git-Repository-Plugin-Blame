@@ -15,16 +15,16 @@ use Git::Repository::Plugin::Blame::Line;
 
 =head1 NAME
  
-Git::Repository::Plugin::Blame - Add a blame() method to Git::Repository.
+Git::Repository::Plugin::Blame - Add a blame() method to L<Git::Repository>.
 
 
 =head1 VERSION
 
-Version 1.0.0
+Version 1.0.1
 
 =cut
 
-our $VERSION = '1.0.0';
+our $VERSION = '1.0.1';
 
 
 =head1 SYNOPSIS
@@ -40,8 +40,8 @@ our $VERSION = '1.0.0';
 
 =head1 DESCRIPTION
 
-This module adds a new blame() method to C<Git::Repository>, which can be used
-to determine what the last change for each line in a file is.
+This module adds a new C<blame()> method to L<Git::Repository>, which can be
+used to determine what the last change for each line in a file is.
 
 
 =head1 METHODS
@@ -49,7 +49,7 @@ to determine what the last change for each line in a file is.
 =head2 blame()
 
 Return the git blame information for a given file as an arrayref of
-C<Git::Repository::Plugin::Blame::Line> objects.
+L<Git::Repository::Plugin::Blame::Line> objects.
 
 	my $blame_lines = $repository->blame( $file );
 
@@ -61,19 +61,13 @@ sub blame
 	
 	# Run the command.
 	my $command = $repository->command( 'blame', '--porcelain', $file );
+	my @output = $command->final_output();
 	
-	# Make sure it didn't throw any errors.
-	my $errors = Perl6::Slurp::slurp( $command->stderr() );
-	croak "Could not retrieve output from git blame: $errors"
-		if defined( $errors ) && ( $errors ne '' );
-	
-	# Read the output.
-	my $output = Perl6::Slurp::slurp( $command->stdout() );
-	
+	# Parse the output.
 	my ( $commit_id, $original_line_number, $final_line_number, $lines_count_in_group );
 	my $commit_attributes = {};
 	my $lines = [];
-	foreach my $line ( split( /\n/x, $output ) )
+	foreach my $line ( @output )
 	{
 		if ( $line =~ /^\t(.*)$/x )
 		{
