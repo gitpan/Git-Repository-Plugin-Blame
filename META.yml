@@ -5,7 +5,7 @@ author:
 build_requires:
   Carp: 0
   Data::Dumper: 0
-  Git::Repository::Plugin: 0
+  Git::Repository: 1.2
   Perl6::Slurp: 0
   Test::Deep: 0
   Test::Exception: 0
@@ -22,12 +22,12 @@ name: Git-Repository-Plugin-Blame
 provides:
   Git::Repository::Plugin::Blame:
     file: lib/Git/Repository/Plugin/Blame.pm
-    version: v1.0.1
+    version: v1.0.2
   Git::Repository::Plugin::Blame::Line:
     file: lib/Git/Repository/Plugin/Blame/Line.pm
-    version: v1.0.1
+    version: v1.0.2
 requires:
   perl: 5.006
 resources:
   license: http://opensource.org/licenses/artistic-license.php
-version: v1.0.1
+version: v1.0.2
