@@ -14,11 +14,11 @@ Git::Repository::Plugin::Blame::Line - Store the git blame information for a lin
 
 =head1 VERSION
 
-Version 1.0.2
+Version 1.0.3
 
 =cut
 
-our $VERSION = '1.0.2';
+our $VERSION = '1.0.3';
 
 
 =head1 SYNOPSIS
@@ -195,8 +195,8 @@ Guillaume Aubert, C<< <aubertg at cpan.org> >>.
 
 =head1 BUGS
 
-Please report any bugs or feature requests to C<bug-git-repository-plugin-blame at rt.cpan.org>,
-or through the web interface at L<http://rt.cpan.org/NoAuth/ReportBug.html?Queue=Git-Repository-Plugin-Blame>.
+Please report any bugs or feature requests through the web interface at
+L<https://github.com/guillaumeaubert/Git-Repository-Plugin-Blame/issues>.
 I will be notified, and then you'll automatically be notified of progress on
 your bug as I make changes.
 
