@@ -4,9 +4,9 @@
       "Guillaume Aubert <aubertg@cpan.org>"
    ],
    "dynamic_config" : 1,
-   "generated_by" : "Module::Build version 0.4, CPAN::Meta::Converter version 2.120530",
+   "generated_by" : "Module::Build version 0.4003, CPAN::Meta::Converter version 2.120921",
    "license" : [
-      "artistic_1"
+      "open_source"
    ],
    "meta-spec" : {
       "url" : "http://search.cpan.org/perldoc?CPAN::Meta::Spec",
@@ -40,11 +40,11 @@
    "provides" : {
       "Git::Repository::Plugin::Blame" : {
          "file" : "lib/Git/Repository/Plugin/Blame.pm",
-         "version" : "v1.0.3"
+         "version" : "v1.0.4"
       },
       "Git::Repository::Plugin::Blame::Line" : {
          "file" : "lib/Git/Repository/Plugin/Blame/Line.pm",
-         "version" : "v1.0.3"
+         "version" : "v1.0.4"
       }
    },
    "release_status" : "stable",
@@ -54,11 +54,11 @@
       },
       "homepage" : "https://metacpan.org/release/Git-Repository-Plugin-Blame",
       "license" : [
-         "http://opensource.org/licenses/artistic-license.php"
+         "http://www.gnu.org/licenses/gpl-3.0.txt"
       ],
       "repository" : {
          "url" : "https://github.com/guillaumeaubert/Git-Repository-Plugin-Blame"
       }
    },
-   "version" : "v1.0.3"
+   "version" : "v1.0.4"
 }
