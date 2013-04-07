@@ -20,8 +20,8 @@ perldoc command.
 
 You can also look for information at:
 
-    RT, CPAN's request tracker (report bugs here)
-        http://rt.cpan.org/NoAuth/Bugs.html?Dist=Git-Repository-Plugin-Blame
+    GitHub (report bugs here)
+        https://github.com/guillaumeaubert/Git-Repository-Plugin-Blame/issues
 
     AnnoCPAN, Annotated CPAN documentation
         http://annocpan.org/dist/Git-Repository-Plugin-Blame
@@ -29,13 +29,13 @@ You can also look for information at:
     CPAN Ratings
         http://cpanratings.perl.org/d/Git-Repository-Plugin-Blame
 
-    Search CPAN
-        http://search.cpan.org/dist/Git-Repository-Plugin-Blame/
+    MetaCPAN
+        https://metacpan.org/release/Git-Repository-Plugin-Blame
 
 
 LICENSE AND COPYRIGHT
 
-Copyright (C) 2012 Guillaume Aubert
+Copyright (C) 2012-2013 Guillaume Aubert
 
 This program is free software: you can redistribute it and/or modify it under
 the terms of the GNU General Public License version 3 as published by the Free

@@ -14,11 +14,11 @@ Git::Repository::Plugin::Blame::Line - Store the git blame information for a lin
 
 =head1 VERSION
 
-Version 1.0.4
+Version 1.0.5
 
 =cut
 
-our $VERSION = '1.0.4';
+our $VERSION = '1.0.5';
 
 
 =head1 SYNOPSIS
@@ -212,9 +212,9 @@ You can also look for information at:
 
 =over 4
 
-=item * RT: CPAN's request tracker
+=item * GitHub (report bugs there)
 
-L<http://rt.cpan.org/NoAuth/Bugs.html?Dist=Git-Repository-Plugin-Blame>
+L<https://github.com/guillaumeaubert/Git-Repository-Plugin-Blame/issues>
 
 =item * AnnoCPAN: Annotated CPAN documentation
 
@@ -224,16 +224,16 @@ L<http://annocpan.org/dist/Git-Repository-Plugin-Blame>
 
 L<http://cpanratings.perl.org/d/Git-Repository-Plugin-Blame>
 
-=item * Search CPAN
+=item * MetaCPAN
 
-L<http://search.cpan.org/dist/Git-Repository-Plugin-Blame/>
+L<https://metacpan.org/release/Git-Repository-Plugin-Blame>
 
 =back
 
 
 =head1 COPYRIGHT & LICENSE
 
-Copyright 2012 Guillaume Aubert.
+Copyright 2012-2013 Guillaume Aubert.
 
 This program is free software: you can redistribute it and/or modify it under
 the terms of the GNU General Public License version 3 as published by the Free
