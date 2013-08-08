@@ -14,11 +14,11 @@ Git::Repository::Plugin::Blame::Line - Store the git blame information for a lin
 
 =head1 VERSION
 
-Version 1.0.5
+Version 1.1.0
 
 =cut
 
-our $VERSION = '1.0.5';
+our $VERSION = '1.1.0';
 
 
 =head1 SYNOPSIS
@@ -188,11 +188,6 @@ sub get_commit_attributes
 }
 
 
-=head1 AUTHOR
-
-Guillaume Aubert, C<< <aubertg at cpan.org> >>.
-
-
 =head1 BUGS
 
 Please report any bugs or feature requests through the web interface at
@@ -229,6 +224,12 @@ L<http://cpanratings.perl.org/d/Git-Repository-Plugin-Blame>
 L<https://metacpan.org/release/Git-Repository-Plugin-Blame>
 
 =back
+
+
+=head1 AUTHOR
+
+L<Guillaume Aubert|https://metacpan.org/author/AUBERTG>,
+C<< <aubertg at cpan.org> >>.
 
 
 =head1 COPYRIGHT & LICENSE

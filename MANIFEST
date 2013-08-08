@@ -8,12 +8,18 @@ MANIFEST.SKIP
 META.json
 META.yml
 Makefile.PL
-README
+README.md
 examples/examples.txt
 ignore.txt
 lib/Git/Repository/Plugin/Blame.pm
+lib/Git/Repository/Plugin/Blame/Cache.pm
 lib/Git/Repository/Plugin/Blame/Line.pm
 t/00-load.t
+t/05-Cache/00-load.t
+t/05-Cache/10-new.t
+t/05-Cache/15-get_repository.t
+t/05-Cache/20-set_blame_lines.t
+t/05-Cache/25-get_blame_lines.t
 t/10-blame.t
 t/Line/00-load.t
 t/Line/10-new.t
@@ -25,6 +31,7 @@ xt/changes.t
 xt/kwalitee.t
 xt/manifest.t
 xt/module_versions.t
+xt/mojibake.t
 xt/perlcritic.t
 xt/pod-coverage.t
 xt/pod.t

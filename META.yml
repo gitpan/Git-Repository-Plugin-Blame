@@ -9,10 +9,11 @@ build_requires:
   Test::FailWarnings: 0
   Test::Git: 0
   Test::More: 0
+  Test::Type: 0
 configure_requires:
   Module::Build: 0
 dynamic_config: 1
-generated_by: 'Module::Build version 0.4003, CPAN::Meta::Converter version 2.120921'
+generated_by: 'Module::Build version 0.4005, CPAN::Meta::Converter version 2.131560'
 license: open_source
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.4.html
@@ -21,12 +22,17 @@ name: Git-Repository-Plugin-Blame
 provides:
   Git::Repository::Plugin::Blame:
     file: lib/Git/Repository/Plugin/Blame.pm
-    version: v1.0.5
+    version: v1.1.0
+  Git::Repository::Plugin::Blame::Cache:
+    file: lib/Git/Repository/Plugin/Blame/Cache.pm
+    version: v1.1.0
   Git::Repository::Plugin::Blame::Line:
     file: lib/Git/Repository/Plugin/Blame/Line.pm
-    version: v1.0.5
+    version: v1.1.0
 requires:
   Carp: 0
+  Class::Load: 0
+  Data::Validate::Type: 0
   Git::Repository: 1.2
   Perl6::Slurp: 0
   perl: 5.006
@@ -35,4 +41,4 @@ resources:
   homepage: https://metacpan.org/release/Git-Repository-Plugin-Blame
   license: http://www.gnu.org/licenses/gpl-3.0.txt
   repository: https://github.com/guillaumeaubert/Git-Repository-Plugin-Blame
-version: v1.0.5
+version: v1.1.0

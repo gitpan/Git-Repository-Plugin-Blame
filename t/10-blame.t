@@ -6,16 +6,19 @@ use strict;
 use warnings;
 
 use Git::Repository ( 'Blame', 'Log' );
+use Git::Repository::Plugin::Blame::Cache;
+use Test::Deep;
 use Test::Exception;
 use Test::FailWarnings -allow_deps => 1;
 use Test::Git;
 use Test::More;
+use Test::Type;
 
 
 # Check there is a git binary available, or skip all.
 has_git();
 
-plan( tests => 14 );
+plan( tests => 18 );
 
 # Create a new, empty repository in a temporary location and return
 # a Git::Repository object.
@@ -106,10 +109,9 @@ lives_ok(
 	'Retrieve git blame information.',
 );
 
-isa_ok(
+ok_arrayref(
 	$blame_lines,
-	'ARRAY',
-	'Blame information',
+	name => 'Blame information',
 );
 
 is(
@@ -163,3 +165,34 @@ subtest(
 		}
 	}
 );
+
+# Make sure the cache is empty.
+ok(
+	defined(
+		my $cache = Git::Repository::Plugin::Blame::Cache->new(
+			repository => $repository->work_tree(),
+		)
+	),
+	'Instantiated cache object for the repository.',
+);
+is_deeply(
+	$cache->get_blame_lines( file => $test_file ),
+	undef,
+	"The cache is empty for file '$test_file'.",
+) || diag( explain( $cache ) );
+
+# Call blame() again with cache enabled, which should populate the cache.
+ok(
+	$repository->blame(
+		$test_file,
+		use_cache => 1,
+	),
+	'Call blame() with cache enabled.',
+);
+
+# Make sure the cache was populated.
+is_deeply(
+	$cache->get_blame_lines( file => $test_file ),
+	$blame_lines,
+	"The cached blame lines for file '$test_file' match the non-cached version.",
+) || diag( explain( $cache ) );

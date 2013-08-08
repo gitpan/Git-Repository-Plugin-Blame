@@ -9,22 +9,23 @@ our @ISA = qw( Git::Repository::Plugin );
 sub _keywords { return qw( blame ) } ## no critic (Subroutines::ProhibitUnusedPrivateSubroutines)
 
 use Carp;
+use Class::Load qw();
 use Perl6::Slurp qw();
 use Git::Repository::Plugin::Blame::Line;
 
 
 =head1 NAME
- 
+
 Git::Repository::Plugin::Blame - Add a blame() method to L<Git::Repository>.
 
 
 =head1 VERSION
 
-Version 1.0.5
+Version 1.1.0
 
 =cut
 
-our $VERSION = '1.0.5';
+our $VERSION = '1.1.0';
 
 
 =head1 SYNOPSIS
@@ -51,13 +52,43 @@ used to determine what the last change for each line in a file is.
 Return the git blame information for a given file as an arrayref of
 L<Git::Repository::Plugin::Blame::Line> objects.
 
-	my $blame_lines = $repository->blame( $file );
+	my $blame_lines = $repository->blame(
+		$file,
+		use_cache => $boolean, # default 0
+	);
+
+Arguments:
+
+=over 4
+
+=item * use_cache (default: 0)
+
+Cache the git blame output.
+
+=back
 
 =cut
 
 sub blame
 {
-	my ( $repository, $file ) = @_;
+	my ( $repository, $file, %args ) = @_;
+	my $use_cache = delete( $args{'use_cache'} ) || 0;
+	croak 'The following arguments are not valid: ' . join( ', ' , keys %args )
+		if scalar( keys %args ) != 0;
+	
+	# Check if the cache is enabled and if the file has already been parsed.
+	my $cache;
+	if ( $use_cache )
+	{
+		my $class = Class::Load::load_class( 'Git::Repository::Plugin::Blame::Cache' );
+		$cache = $class->new( repository => $repository->work_tree() );
+		croak 'Failed to initialize cache for repository ' . $repository->work_tree()
+			if !defined( $cache );
+		
+		my $blame_lines = $cache->get_blame_lines( file => $file );
+		return $blame_lines
+			if defined( $blame_lines );
+	}
 	
 	# Run the command.
 	my $command = $repository->command( 'blame', '--porcelain', $file );
@@ -96,13 +127,17 @@ sub blame
 		}
 	}
 	
+	# If we have a cache object, cache the output.
+	if ( defined( $cache ) )
+	{
+		$cache->set_blame_lines(
+			file        => $file,
+			blame_lines => $lines,
+		);
+	}
+	
 	return $lines;
 }
-
-
-=head1 AUTHOR
-
-Guillaume Aubert, C<< <aubertg at cpan.org> >>.
 
 
 =head1 BUGS
@@ -141,6 +176,12 @@ L<http://cpanratings.perl.org/d/Git-Repository-Plugin-Blame>
 L<https://metacpan.org/release/Git-Repository-Plugin-Blame>
 
 =back
+
+
+=head1 AUTHOR
+
+L<Guillaume Aubert|https://metacpan.org/author/AUBERTG>,
+C<< <aubertg at cpan.org> >>.
 
 
 =head1 COPYRIGHT & LICENSE

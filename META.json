@@ -4,7 +4,7 @@
       "Guillaume Aubert <aubertg@cpan.org>"
    ],
    "dynamic_config" : 1,
-   "generated_by" : "Module::Build version 0.4003, CPAN::Meta::Converter version 2.120921",
+   "generated_by" : "Module::Build version 0.4005, CPAN::Meta::Converter version 2.131560",
    "license" : [
       "open_source"
    ],
@@ -21,7 +21,8 @@
             "Test::Exception" : "0",
             "Test::FailWarnings" : "0",
             "Test::Git" : "0",
-            "Test::More" : "0"
+            "Test::More" : "0",
+            "Test::Type" : "0"
          }
       },
       "configure" : {
@@ -32,6 +33,8 @@
       "runtime" : {
          "requires" : {
             "Carp" : "0",
+            "Class::Load" : "0",
+            "Data::Validate::Type" : "0",
             "Git::Repository" : "1.2",
             "Perl6::Slurp" : "0",
             "perl" : "5.006"
@@ -41,11 +44,15 @@
    "provides" : {
       "Git::Repository::Plugin::Blame" : {
          "file" : "lib/Git/Repository/Plugin/Blame.pm",
-         "version" : "v1.0.5"
+         "version" : "v1.1.0"
+      },
+      "Git::Repository::Plugin::Blame::Cache" : {
+         "file" : "lib/Git/Repository/Plugin/Blame/Cache.pm",
+         "version" : "v1.1.0"
       },
       "Git::Repository::Plugin::Blame::Line" : {
          "file" : "lib/Git/Repository/Plugin/Blame/Line.pm",
-         "version" : "v1.0.5"
+         "version" : "v1.1.0"
       }
    },
    "release_status" : "stable",
@@ -61,5 +68,5 @@
          "url" : "https://github.com/guillaumeaubert/Git-Repository-Plugin-Blame"
       }
    },
-   "version" : "v1.0.5"
+   "version" : "v1.1.0"
 }
