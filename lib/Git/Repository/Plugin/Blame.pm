@@ -21,20 +21,20 @@ Git::Repository::Plugin::Blame - Add a blame() method to L<Git::Repository>.
 
 =head1 VERSION
 
-Version 1.1.1
+Version 1.2.0
 
 =cut
 
-our $VERSION = '1.1.1';
+our $VERSION = '1.2.0';
 
 
 =head1 SYNOPSIS
 
 	# Load the plugin.
 	use Git::Repository 'Blame';
-	
+
 	my $repository = Git::Repository->new();
-	
+
 	# Get the git blame information.
 	my $blame_lines = $repository->blame( $file );
 
@@ -75,7 +75,7 @@ sub blame
 	my $use_cache = delete( $args{'use_cache'} ) || 0;
 	croak 'The following arguments are not valid: ' . join( ', ' , keys %args )
 		if scalar( keys %args ) != 0;
-	
+
 	# Check if the cache is enabled and if the file has already been parsed.
 	my $cache;
 	if ( $use_cache )
@@ -84,16 +84,16 @@ sub blame
 		$cache = $class->new( repository => $repository->work_tree() );
 		croak 'Failed to initialize cache for repository ' . $repository->work_tree()
 			if !defined( $cache );
-		
+
 		my $blame_lines = $cache->get_blame_lines( file => $file );
 		return $blame_lines
 			if defined( $blame_lines );
 	}
-	
+
 	# Run the command.
 	my $command = $repository->command( 'blame', '--porcelain', $file );
 	my @output = $command->final_output();
-	
+
 	# Parse the output.
 	my ( $commit_id, $original_line_number, $final_line_number, $lines_count_in_group );
 	my $commit_attributes = {};
@@ -126,7 +126,7 @@ sub blame
 			}
 		}
 	}
-	
+
 	# If we have a cache object, cache the output.
 	if ( defined( $cache ) )
 	{
@@ -135,7 +135,7 @@ sub blame
 			blame_lines => $lines,
 		);
 	}
-	
+
 	return $lines;
 }
 
